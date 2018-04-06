@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
 		/* Set Full screen flag */
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        View decor = this.getWindow().getDecorView();
+        decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_LAYOUT_STABLE); /* OK */
         /* add FLAG_KEEP_SCREEN_ON */
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         /* Support Transparent color */
