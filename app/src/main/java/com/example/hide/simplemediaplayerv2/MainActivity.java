@@ -14,8 +14,8 @@ import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+//import android.view.Window;
+//import android.view.WindowManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
         SurfaceView  mPreview = findViewById(R.id.surfaceView);
         //mPreview.setSecure(true);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         holder1 = mPreview.getHolder();
         holder1.addCallback(this);
