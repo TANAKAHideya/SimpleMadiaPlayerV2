@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         /* No window title */
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+
 		/* Set Full screen flag */
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View decor = this.getWindow().getDecorView();
