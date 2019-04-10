@@ -2,14 +2,20 @@ package com.example.hide.simplemediaplayerv2;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Presentation;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
+import android.graphics.drawable.GradientDrawable;
+import android.hardware.display.DisplayManager;
 import android.media.MediaPlayer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -83,6 +89,14 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
 
         SurfaceView  mPreview = findViewById(R.id.surfaceView);
         //mPreview.setSecure(true);
+
+        // Get the display manager service.
+        DisplayManager mDisplayManager = (DisplayManager)getSystemService(Context.DISPLAY_SERVICE);
+        Display[] displays  = mDisplayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
+        for (int i=0;i<displays.length;i++){
+            DemoPresentation presentation = new DemoPresentation(this, displays[i]);
+            presentation.show();
+        }
 
         //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(true);
@@ -200,5 +214,41 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
     public void surfaceDestroyed(SurfaceHolder paramSurfaceHolder) {
         Log.i(TAG, "surfaceDestroyed()");
     }
+    /**
+     * The presentation to show on the secondary display.
+     *
+     * Note that the presentation display may have different metrics from the display on which
+     * the main activity is showing so we must be careful to use the presentation's
+     * own {@link Context} whenever we load resources.
+     */
+    private final class DemoPresentation extends Presentation {
+
+        public DemoPresentation(Context context, Display display) {
+            super(context, display);
+        }
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            // Be sure to call the super class.
+            super.onCreate(savedInstanceState);
+
+            // Set the background to a random gradient.
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setShape(GradientDrawable.RECTANGLE);
+            drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
+
+            Point p = new Point();
+            getDisplay().getSize(p);
+            drawable.setGradientRadius(Math.max(p.x, p.y) / 2);
+
+            final int[] colors = new int[] {
+                    ((int) (Math.random() * Integer.MAX_VALUE)) | 0xFF000000,
+                    ((int) (Math.random() * Integer.MAX_VALUE)) | 0xFF000000 };
+            drawable.setColors(colors);
+
+            findViewById(android.R.id.content).setBackground(drawable);
+        }
+    }
+
 
 }
