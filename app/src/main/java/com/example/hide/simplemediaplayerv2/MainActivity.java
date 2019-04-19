@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
     private static final String TAG = "SimpleMediaPlayerV2";
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE=999;
 
-    private static final String MP4_FILE = "a1.mp4";
+    private static final String MP4_FILE = "video0.mp4";
     private static final String VIDEO_PATH = System.getenv("EXTERNAL_STORAGE") + "/video/";
     String mediaPath =  VIDEO_PATH + MP4_FILE;
 
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
         SurfaceView  mPreview = findViewById(R.id.surfaceView);
         //mPreview.setSecure(true);
 
+        /*
         // Get the display manager service.
         DisplayManager mDisplayManager = (DisplayManager)getSystemService(Context.DISPLAY_SERVICE);
         Display[] displays  = mDisplayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity  implements SurfaceHolder.Ca
             DemoPresentation presentation = new DemoPresentation(this, displays[i]);
             presentation.show();
         }
+        */
 
         //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(true);
